@@ -125,7 +125,13 @@ export default function Dashboard() {
         location: { lat, lng }
       };
 
-      const res = await axios.post('/api/complaints', payload);
+      console.log("API Base URL:", import.meta.env.VITE_API_BASE_URL);
+
+const res = await axios.post(
+  `${import.meta.env.VITE_API_BASE_URL}/api/complaints`,
+  payload
+);
+
       
       if (res.status === 201) {
         toast.success('Complaint submitted successfully!');
