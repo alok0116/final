@@ -13,7 +13,8 @@ export default function AdminDashboard() {
   const fetchAllComplaints = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('/api/complaints');
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/complaints`);
+
       setComplaints(res.data);
     } catch (err) {
       console.error('Error fetching admin complaints:', err);
@@ -31,7 +32,8 @@ export default function AdminDashboard() {
   const handleStatusChange = async (id, newStatus) => {
     setUpdatingId(id);
     try {
-      const res = await axios.put(`/api/complaints/${id}`, { status: newStatus });
+      const res = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/complaints/${id}`, { status: newStatus });
+
       if (res.status === 200) {
         toast.success(`Complaint status updated to "${newStatus}"`);
         // Update local state without full reload for micro-interaction speed

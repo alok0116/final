@@ -16,7 +16,10 @@ export default function InteractiveMap() {
   const fetchComplaints = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('/api/complaints');
+      console.log("API Base URL:", import.meta.env.VITE_API_BASE_URL);
+
+const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/complaints`);
+
       const data = res.data;
       setComplaints(data);
       
